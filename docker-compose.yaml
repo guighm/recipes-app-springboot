@@ -1,0 +1,39 @@
+networks:
+  recipes_app:
+
+volumes:
+  recipes_app_data: {}
+
+services:
+  recipes_app_backend:
+    image: recipes-app-backend:latest
+    networks:
+      recipes_app:
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/recipes_app
+      DB_USERNAME: root
+      DB_PASSWORD: 123
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  db:
+    image: postgres:17
+    networks:
+      recipes_app:
+    volumes:
+      - recipes_app_data:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: recipes_app
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "root" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
