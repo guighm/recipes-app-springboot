@@ -2,9 +2,7 @@ package org.guilherme.recipes.config.seed;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.guilherme.recipes.model.Recipe;
 import org.guilherme.recipes.model.User;
-import org.guilherme.recipes.repository.RecipeRepository;
 import org.guilherme.recipes.repository.UserRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -19,7 +17,6 @@ import java.time.Instant;
 public class Seeder implements ApplicationListener<ApplicationReadyEvent> {
 
     private final UserRepository userRepository;
-    private final RecipeRepository recipeRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override

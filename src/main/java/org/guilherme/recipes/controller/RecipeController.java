@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.guilherme.recipes.dto.CreateRecipeDto;
 import org.guilherme.recipes.dto.RecipeDto;
 import org.guilherme.recipes.service.RecipeService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
